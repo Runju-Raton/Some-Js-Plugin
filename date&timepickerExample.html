@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jQuery Date & Time Picker</title>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/jquery-ui-timepicker-addon.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f7f9fc;
+    }
+
+    #datetimepicker {
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      outline: none;
+      transition: border-color 0.2s ease-in-out;
+    }
+
+    #datetimepicker:focus {
+      border-color: #007bff;
+    }
+  </style>
+</head>
+<body>
+
+<input type="text" id="datetimepicker" placeholder="Select date & time">
+
+<!-- jQuery, jQuery UI, and Timepicker Addon -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ui-timepicker-addon/1.6.3/jquery-ui-timepicker-addon.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    $("#datetimepicker").datetimepicker({
+      dateFormat: "dd-mm-yy",   // Date format
+      timeFormat: "HH:mm:ss",  // Time format (24-hour format)
+      showSecond: false,        // Show seconds in the time picker
+      changeMonth: true,       // Allow month dropdown
+      changeYear: true,        // Allow year dropdown
+      yearRange: "1900:2100"   // Set year range
+    });
+  });
+</script>
+
+</body>
+</html>
