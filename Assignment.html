@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Step Form</title>
+    
+    <!-- jQuery and jQuery Steps -->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-steps/1.1.0/jquery.steps.js"></script>
+    
+    <!-- Toastr -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    
+    <!-- TinyMCE -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/7.6.0/tinymce.min.js" integrity="sha512-/4EpSbZW47rO/cUIb0AMRs/xWwE8pyOLf8eiDWQ6sQash5RP1Cl8Zi2aqa4QEufjeqnzTK8CLZWX7J5ZjLcc1Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <!-- Intl-Tel-Input -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+
+    <!-- jQuery UI -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./stepjscss.css">
+    <style>
+        .container {
+            max-width:100%;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .steps {
+            position: sticky;
+            top: 0;
+            color: #fff;
+            padding: 10px;
+            z-index: 10;
+        }
+        .steps ul {
+            display: flex;
+            justify-content: space-between;
+            padding: 0;
+            list-style: none;
+            margin: 0;
+        }
+        .steps ul li {
+            flex: 1;
+            text-align: center;
+        }
+        section {
+            padding: 20px;
+            overflow-y: auto;
+            max-height: 400px;
+        }
+        .wizard > .content {
+            min-height: 38em;
+        }
+        .iti {
+            width: 100%;
+            position: relative;
+            display: inline-block;
+        }
+        #contact input[type="tel"] {
+            width: 100%;
+            border: 1px solid #ccc;
+            background: #FFF;
+            margin: 0 0 5px;
+            padding-left: 50px;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .intl-tel-input {
+            width: 100%;
+        }
+        .ui-datepicker {
+            z-index: 100 !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form id="contact" action="#">
+            <div>
+                <h3>Account</h3>
+                <section>
+                    <label for="userName">User name *</label>
+                    <input id="userName" name="userName" type="text" class="required">
+                    <label for="password">Password *</label>
+                    <input id="password" name="password" type="password" class="required">
+                    <label for="confirm">Confirm Password *</label>
+                    <input id="confirm" name="confirm" type="password" class="required">
+                    <p>(*) Mandatory</p>
+                </section>
+                <h3>Profile</h3>
+                <section>
+                    <label for="name">First name *</label>
+                    <input id="name" name="name" type="text" class="required">
+                    <label for="surname">Last name *</label>
+                    <input id="surname" name="surname" type="text" class="required">
+                    <label for="email">Email *</label>
+                    <input id="email" name="email" type="email" class="required email">
+                    <label for="phone">Phone *</label><br>
+                    <input id="phone" name="phone" type="tel" class="required"><br>
+                    <label for="address">Address</label>
+                    <input id="address" name="address" type="text">
+                    <p>(*) Mandatory</p>
+                </section>
+                <h3>Event Details</h3>
+                <section style="height: 100%;">
+                    <label for="venue">Event Venue *</label>
+                    <input id="venue" name="venue" type="text" placeholder="Type to search venue" class="required">
+                    <label for="eventDate">Event Date *</label>
+                    <input id="eventDate" name="eventDate" type="text" class="required">
+                    <label for="description">Event Description</label>
+                    <textarea id="description" name="description"></textarea>
+                </section>
+                <h3>Finish</h3>
+                <section>
+                    <input style="width: 5%;" id="acceptTerms" name="acceptTerms" type="checkbox" class="required"> 
+                    <label for="acceptTerms">I agree with the Terms and Conditions.</label>
+                </section>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            // Initialize form validation and steps
+            var form = $("#contact");
+            form.validate({
+                errorPlacement: function errorPlacement(error, element) { element.before(error); },
+                rules: {
+                    confirm: {
+                        equalTo: "#password"
+                    }
+                }
+            });
+            form.children("div").steps({
+                headerTag: "h3",
+                bodyTag: "section",
+                transitionEffect: "slideLeft",
+                onStepChanging: function(event, currentIndex, newIndex) {
+                    if (currentIndex > newIndex) {
+                        return true;
+                    }
+                    form.validate().settings.ignore = ":disabled,:hidden";
+                    return form.valid();
+                },
+                onFinishing: function(event, currentIndex) {
+                    form.validate().settings.ignore = ":disabled";
+                    return form.valid();
+                },
+                onFinished: function(event, currentIndex) {
+                    toastr.success("Form Submitted Successfully!");
+                }
+            });
+
+            // Initialize TinyMCE
+            tinymce.init({
+                selector: "#description"
+            });
+
+            // Initialize Intl-Tel-Input
+            const phoneInput = document.querySelector("#phone");
+            window.intlTelInput(phoneInput, {
+                initialCountry: "us",
+                utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
+            });
+
+            // Autocomplete for Event Venue
+            const venues = ["Conference Hall A", "Banquet Hall B", "VIP Lounge", "Outdoor Arena"];
+            $("#venue").autocomplete({
+                source: venues
+            });
+
+            // Datepicker for Event Date
+            $("#eventDate").datepicker({
+                dateFormat: "dd-mm-yy", // Custom date format
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "1900:2100" // Year range
+            });
+        });
+    </script>
+</body>
+</html>

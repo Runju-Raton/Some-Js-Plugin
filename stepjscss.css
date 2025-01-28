@@ -955,7 +955,7 @@ table {
 .wizard > .steps .current a:active
 {
     background: #4351ce;
-    color: #111;
+    color: #eee;
     cursor: default;
 }
 
