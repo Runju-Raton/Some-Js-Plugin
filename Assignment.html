@@ -44,11 +44,16 @@
             z-index: 10;
         }
         .steps ul {
+            font-size: 20px;
             display: flex;
             justify-content: space-between;
             padding: 0;
             list-style: none;
             margin: 0;
+        }
+        #phone-error{
+            padding-left: 30px;
+            margin-top: -120px;
         }
         .steps ul li {
             flex: 1;
@@ -62,10 +67,17 @@
         .wizard > .content {
             min-height: 38em;
         }
+        .wizard > .actions > ul {
+            font-size: 16px;
+        }
         .iti {
             width: 100%;
             position: relative;
             display: inline-block;
+        }
+        .iti__flag-box{
+            margin-left: 10px;
+            margin-right: 6px;
         }
         #contact input[type="tel"] {
             width: 100%;
@@ -73,6 +85,18 @@
             background: #FFF;
             margin: 0 0 5px;
             padding-left: 50px;
+        }
+        #contact input[type="text"]{
+            font-size: 16px;
+        }
+        #contact input[type="email"]{
+            font-size: 16px;
+        }
+        #contact input[type="tel"] {
+            font-size: 16px;
+        }
+        .toast-message{
+            font-size: 16px;
         }
         label {
             display: block;
@@ -98,40 +122,49 @@
         <form id="contact" action="#">
             <div>
                 <h3>Account</h3>
-                <section>
+                <section style="font-size: 16px;">
                     <label for="userName">User name *</label>
-                    <input id="userName" name="userName" type="text" class="required">
+                    <input id="userName" name="userName" type="text" class="required" placeholder="Enter your username">
+                    
                     <label for="password">Password *</label>
-                    <input id="password" name="password" type="password" class="required">
+                    <input id="password" name="password" type="password" class="required" placeholder="Enter your password">
+                    
                     <label for="confirm">Confirm Password *</label>
-                    <input id="confirm" name="confirm" type="password" class="required">
+                    <input id="confirm" name="confirm" type="password" class="required" placeholder="Re-enter your password">
+                    
                     <p>(*) Mandatory</p>
                 </section>
                 <h3>Profile</h3>
-                <section>
+                <section style="font-size: 16px;">
                     <label for="name">First name *</label>
-                    <input id="name" name="name" type="text" class="required">
+                    <input id="name" name="name" type="text" class="required" placeholder="Enter your first name">
+                    
                     <label for="surname">Last name *</label>
-                    <input id="surname" name="surname" type="text" class="required">
+                    <input id="surname" name="surname" type="text" class="required" placeholder="Enter your last name">
+                    
                     <label for="email">Email *</label>
-                    <input id="email" name="email" type="email" class="required email">
-                    <label for="phone">Phone *</label><br>
+                    <input id="email" name="email" type="email" class="required email" placeholder="Enter your email address">
+                    <label for="phone">Phone *</label>
                     <input id="phone" name="phone" type="tel" class="required"><br>
                     <label for="address">Address</label>
-                    <input id="address" name="address" type="text">
+                    <input id="address" name="address" type="text" placeholder="Enter your address (optional)">
+                    
                     <p>(*) Mandatory</p>
                 </section>
                 <h3>Event Details</h3>
-                <section style="height: 100%;">
+                <section style="height: 100%; font-size: 16px;">
                     <label for="venue">Event Venue *</label>
                     <input id="venue" name="venue" type="text" placeholder="Type to search venue" class="required">
+                    
                     <label for="eventDate">Event Date *</label>
-                    <input id="eventDate" name="eventDate" type="text" class="required">
+                    <input id="eventDate" name="eventDate" type="text" class="required" placeholder="Select event date">
+                    
                     <label for="description">Event Description</label>
-                    <textarea id="description" name="description"></textarea>
+                    <textarea id="description" name="description" placeholder="Enter event details"></textarea>
                 </section>
+
                 <h3>Finish</h3>
-                <section>
+                <section style="font-size: 16px;">
                     <input style="width: 5%;" id="acceptTerms" name="acceptTerms" type="checkbox" class="required"> 
                     <label for="acceptTerms">I agree with the Terms and Conditions.</label>
                 </section>
@@ -179,7 +212,7 @@
             // Initialize Intl-Tel-Input
             const phoneInput = document.querySelector("#phone");
             window.intlTelInput(phoneInput, {
-                initialCountry: "us",
+                initialCountry: "bd",
                 utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
             });
 
