@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- Intl-Tel-Input -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f7f9fc;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <input id="phone" name="phone" type="tel" class="required"><br>
+    </div>
+    <script>
+        // Initialize Intl-Tel-Input
+        const phoneInput = document.querySelector("#phone");
+        window.intlTelInput(phoneInput, {
+            // initialCountry: "bd", // bd , us, af
+            // preferredCountries: ["bd", "us"],
+            // onlyCountries: ["bd"],
+            // separateDialCode: true,
+            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
+        });
+    </script>
+</body>
+
+</html>

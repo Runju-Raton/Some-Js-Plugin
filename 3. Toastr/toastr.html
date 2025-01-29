@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toastr Example</title>
+
+    <!-- Include jQuery (Before Toastr) -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+    <!-- Toastr CSS & JS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    <style>
+         body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f7f9fc;
+        }
+    </style>
+
+</head>
+<body>
+    <div>
+        <button id="success">Success</button>
+        <button id="error">Error</button>
+        <button id="warning">Warning</button>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            // Show welcome message on page load
+            // toastr.success('Welcome to this page');
+
+            // Button click events
+            $('#success').click(function() {
+                toastr.success('Success message displayed!');
+            });
+
+            $('#error').click(function() {
+                toastr.error('Error message displayed!');
+            });
+
+            $('#warning').click(function() {
+                toastr.warning('Warning message displayed!');
+            });
+        });
+    </script>
+</body>
+</html>

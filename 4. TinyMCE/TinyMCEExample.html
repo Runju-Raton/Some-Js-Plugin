@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TinyMCE Editor Example</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- TinyMCE -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/7.6.0/tinymce.min.js"
+    integrity="sha512-/4EpSbZW47rO/cUIb0AMRs/xWwE8pyOLf8eiDWQ6sQash5RP1Cl8Zi2aqa4QEufjeqnzTK8CLZWX7J5ZjLcc1Q=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body>
+
+  <div class="editor-container">
+    <h2>TinyMCE Rich Text Editor</h2>
+    <textarea id="editor"></textarea> <br>
+    <button id="get-content">Get Content</button>
+    <div id="output" style="margin-top: 20px;"></div>
+  </div>
+
+  <script>
+    $(document).ready(function () {
+      // Initialize TinyMCE
+      tinymce.init({
+        selector: '#editor',
+        plugins: 'lists link image table code',
+        toolbar: 'undo redo | formatselect | bold italic underline | alignleft aligncenter alignright | bullist numlist | link image | code',
+        height: 300
+      });
+
+      // Get the content of the editor
+      $('#get-content').on('click', function () {
+        const content = tinymce.get('editor').getContent();
+        $('#output').html('<h3>Editor Content:</h3>' + content);
+      });
+    });
+  </script>
+
+</body>
+
+</html>

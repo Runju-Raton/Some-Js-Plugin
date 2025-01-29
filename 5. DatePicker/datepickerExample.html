@@ -42,9 +42,10 @@
   $(document).ready(function() {
     $("#datepicker").datepicker({
       dateFormat: "dd-mm-yy", // Custom date format
-      changeMonth: true,
-      changeYear: true,
-      yearRange: "1900:2100" // Year range
+      // minDate:0,
+      maxDate: "+1m",
+      // changeMonth: true,
+      // changeYear: true,
     });
   });
 </script>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jQuery Autocomplete Plugin</title>
+  <!-- jQuery UI CSS -->
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    input {
+      width: 300px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <h2>jQuery UI Autocomplete Example</h2>
+  <input id="autocomplete" placeholder="Type a fruit..." />
+
+
+    <!-- Include jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <!-- Include jQuery UI -->
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      // Sample data for autocomplete
+      const fruits = [
+        "Apple",
+        "Apricot",
+        "Avocado",
+        "Banana",
+        "Blackberry",
+        "Blueberry",
+        "Cherry",
+        "Clementine",
+        "Coconut",
+        "Cranberry",
+        "Custard Apple",
+        "Date",
+        "Dragonfruit",
+        "Durian",
+        "Fig",
+        "Grapes",
+        "Guava",
+        "Honeydew",
+        "Jackfruit",
+        "Kiwi",
+        "Kumquat",
+        "Lemon",
+        "Lime",
+        "Lychee",
+        "Mango",
+        "Mulberry",
+        "Nectarine",
+        "Orange",
+        "Papaya",
+        "Passionfruit",
+        "Peach",
+        "Pear",
+        "Persimmon",
+        "Pineapple",
+        "Plum",
+        "Pomegranate",
+        "Raspberry",
+        "Starfruit",
+        "Strawberry",
+        "Tamarind",
+        "Tangerine",
+        "Watermelon",
+        "Zucchini (technically a fruit)"
+    ];  
+
+
+      // Initialize the autocomplete
+      $("#autocomplete").autocomplete({
+        source: fruits,   // Pass the data array
+        minLength: 1,     // Minimum characters to trigger suggestions
+        delay: 100        // Delay in milliseconds before showing suggestions
+      });
+    });
+  </script>
+</body>
+</html>
